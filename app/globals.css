@@ -1,26 +1,453 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html {
+  scroll-behavior: smooth;
+  position: relative;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Vinheta nas quinas — foco no centro (acima do fundo, abaixo do conteúdo) */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 70% 55% at 0% 0%, rgb(15 23 42 / 0.16), transparent 58%),
+    radial-gradient(ellipse 70% 55% at 100% 0%, rgb(15 23 42 / 0.14), transparent 58%),
+    radial-gradient(ellipse 70% 55% at 0% 100%, rgb(15 23 42 / 0.14), transparent 58%),
+    radial-gradient(ellipse 70% 55% at 100% 100%, rgb(15 23 42 / 0.16), transparent 58%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+@theme {
+  --color-brand-primary: #0229c4;
+  --color-brand-hover: #0336ff;
+  --color-brand-accent: #49e3e3;
+
+  --color-surface-base: #ffffff;
+  --color-surface-subtle: #f8fafc;
+  --color-surface-elevated: #ffffff;
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+
+  --color-border-subtle: #e2e8f0;
+
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-cta: 0 10px 32px -6px rgba(2, 41, 196, 0.45), 0 4px 14px -4px rgba(2, 41, 196, 0.28);
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  --animate-marquee: marquee 35s linear infinite;
+
+  @keyframes hero-headline-shine {
+    0% {
+      background-position: -100% 50%, 0 0;
+    }
+    100% {
+      background-position: 200% 50%, 0 0;
+    }
+  }
+
+  @keyframes hero-headline-glow {
+    0%,
+    42%,
+    58%,
+    100% {
+      filter: drop-shadow(0 0 0 transparent);
+    }
+    50% {
+      filter: drop-shadow(0 2px 20px rgba(2, 41, 196, 0.22)) drop-shadow(0 0 36px rgba(124, 58, 237, 0.14));
+    }
+  }
+
+  @keyframes comparison-grid-drift {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 56px 56px;
+    }
+  }
+
+  @keyframes glass-cta-headline-shine {
+    0% {
+      background-position: -100% 50%, 0 0;
+    }
+    100% {
+      background-position: 200% 50%, 0 0;
+    }
+  }
+
+  @keyframes hero-pill-badge-shine {
+    0% {
+      transform: translateX(-130%) skewX(-16deg);
+    }
+    100% {
+      transform: translateX(230%) skewX(-16deg);
+    }
+  }
+
+  @keyframes comparison-beam-spin {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  @keyframes method-step-num-shine {
+    0% {
+      background-position: -100% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+}
+
+/* Seções claras: grid de linhas 1px / 40px @ 5% */
+.section-surface-light {
+  position: relative;
+  background-color: #f8fafc;
+  background-image: linear-gradient(to right, rgb(15 23 42 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(15 23 42 / 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Deep slate (tech / luxo) */
+.section-deep-slate {
+  position: relative;
+  background-color: #0b1120;
+  color: rgb(248 250 252);
+}
+
+.section-deep-slate-muted {
+  color: rgb(203 213 225);
+}
+
+/* Borda metálica (reflexo no topo) — envolver o card com p-px */
+.luxury-edge-light {
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(203, 213, 225, 0.55) 18%,
+    rgba(148, 163, 184, 0.22) 42%,
+    rgba(100, 116, 139, 0.14) 100%
+  );
+}
+
+.luxury-edge-dark {
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(148, 163, 184, 0.22) 28%,
+    rgba(30, 41, 59, 0.55) 62%,
+    rgba(15, 23, 42, 0.75) 100%
+  );
+}
+
+.hero-headline-shine {
+  background-image: linear-gradient(
+      92deg,
+      transparent 0%,
+      transparent 44%,
+      rgba(255, 255, 255, 0.92) 50%,
+      transparent 56%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom right, #020617, #0f172a, #1e293b);
+  background-size: 280% 100%, 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-headline-shine 4s linear infinite, hero-headline-glow 4s linear infinite;
+}
+
+.hero-headline-shine-accent {
+  background-image: linear-gradient(
+      92deg,
+      transparent 0%,
+      transparent 44%,
+      rgba(255, 255, 255, 0.92) 50%,
+      transparent 56%,
+      transparent 100%
+    ),
+    linear-gradient(118deg, #020617 0%, #0229c4 38%, #1d4ed8 52%, #0f172a 100%);
+  background-size: 280% 100%, 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-headline-shine 4s linear infinite, hero-headline-glow 4s linear infinite;
+}
+
+/* Headline do Final CTA — base slate-950 + varredura suave (ritmo alinhado ao card) */
+.glass-cta-headline-shine {
+  background-image: linear-gradient(
+      92deg,
+      transparent 0%,
+      transparent 42%,
+      rgba(255, 255, 255, 0.75) 50%,
+      transparent 58%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom right, #020617, #0f172a 42%, #1e293b 100%);
+  background-size: 280% 100%, 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: glass-cta-headline-shine 5s linear infinite, hero-headline-glow 5s linear infinite;
+}
+
+/* Alternância legada / hero CTA areas */
+.section-surface-tint {
+  background-image: radial-gradient(ellipse 120% 90% at 50% 0%, rgb(239 246 255 / 0.5) 0%, rgb(248 250 252) 42%, rgb(255 255 255) 100%);
+}
+
+.comparison-grid-bg {
+  background-image: radial-gradient(circle at center, rgb(100 116 139 / 0.14) 1px, transparent 1px);
+  background-size: 28px 28px;
+  animation: comparison-grid-drift 75s linear infinite;
+}
+
+.section-deep-slate .comparison-grid-bg {
+  background-image: radial-gradient(circle at center, rgb(148 163 184 / 0.12) 1px, transparent 1px);
+}
+
+/* Serviços — profundidade + borda metálica (gradiente só na borda 1px) */
+.service-card-depth {
+  border: 1px solid transparent;
+  background-image:
+    radial-gradient(
+      ellipse 130% 95% at 50% -6%,
+      rgb(51 65 85 / 0.4) 0%,
+      rgb(15 23 42) 46%,
+      rgb(2 6 23) 100%
+    ),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.1), transparent 40%);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+.card-hover-brand-glow {
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+
+.card-hover-brand-glow:hover {
+  box-shadow:
+    0 24px 48px -14px rgb(15 23 42 / 0.1),
+    0 0 0 1px rgb(2 41 196 / 0.06),
+    0 0 48px -6px rgb(2 41 196 / 0.1);
+}
+
+.icon-glow-dark {
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.45)) drop-shadow(0 0 20px rgba(167, 139, 250, 0.35));
+}
+
+/* Hero — pill "Assessoria especializada" (vidro + hover brand) */
+.hero-pill-banner {
+  box-shadow:
+    0 16px 48px -20px rgb(15 23 42 / 0.16),
+    0 0 0 1px rgb(255 255 255 / 0.08) inset,
+    inset 0 1px 0 0 rgb(255 255 255 / 0.52);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.hero-pill-banner:hover {
+  box-shadow:
+    0 20px 56px -18px rgb(15 23 42 / 0.18),
+    0 0 52px -14px rgb(2 41 196 / 0.14),
+    0 0 0 1px rgb(255 255 255 / 0.1) inset,
+    inset 0 1px 0 0 rgb(255 255 255 / 0.58);
+}
+
+/* Texto do pill — base slate-950 + varredura clara (como a headline) */
+.hero-pill-tagline-shine {
+  background-image: linear-gradient(
+      92deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(255, 255, 255, 0.92) 50%,
+      transparent 60%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #020617, #0f172a 55%, #1e293b 100%);
+  background-size: 260% 100%, 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-headline-shine 4.5s linear infinite;
+}
+
+/* Brilho contínuo no badge UPSCALE (gradiente metálico no JSX) */
+.hero-pill-badge-shine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 55%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgb(255 255 255 / 0.08) 35%,
+    rgb(255 255 255 / 0.38) 50%,
+    rgb(255 255 255 / 0.1) 65%,
+    transparent 100%
+  );
+  animation: hero-pill-badge-shine 3.2s linear infinite;
+  pointer-events: none;
+}
+
+/* Etapas do método — brilho deslizante no número */
+.method-step-num-shine {
+  background-image: linear-gradient(
+    105deg,
+    #011d8a 0%,
+    #0229c4 32%,
+    #5b8cff 48%,
+    #e8f0ff 50.5%,
+    #5b8cff 52%,
+    #0229c4 68%,
+    #01156e 100%
+  );
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: method-step-num-shine 3.5s ease-in-out infinite;
+}
+
+/* Comparativo — fio cônico (~20% do arco); máscara = só borda 2px */
+.comparison-beam-ring-mask {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-sizing: border-box;
+  padding: 2px;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.comparison-beam-rotor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 240%;
+  height: 240%;
+  min-width: 640px;
+  min-height: 640px;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    transparent 262deg,
+    rgb(2 41 196 / 0.92) 278deg,
+    rgb(2 41 196 / 0.32) 298deg,
+    transparent 316deg,
+    transparent 360deg
+  );
+  animation: comparison-beam-spin 5s linear infinite;
+}
+
+/* Serviços / entregas — fio ~20% do perímetro (#0229C4); só transform no spin */
+.service-card-beam-rotor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 240%;
+  height: 240%;
+  min-width: 420px;
+  min-height: 420px;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    transparent 262deg,
+    rgb(2 41 196 / 0.96) 278deg,
+    rgb(2 41 196 / 0.28) 298deg,
+    transparent 316deg,
+    transparent 360deg
+  );
+  animation: comparison-beam-spin 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card-beam-rotor {
+    animation: none;
+  }
+}
+
+/* Halo atrás do ícone: pulso no topo do perímetro, só enquanto o card está em hover */
+@keyframes service-icon-beam-sync {
+  0%,
+  100% {
+    opacity: 0.52;
+    transform: translate(-50%, -50%) scale(1.14);
+  }
+  5%,
+  95% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+}
+
+.service-icon-beam-halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  background: rgb(2 41 196 / 0.5);
+  filter: blur(14px);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  pointer-events: none;
+}
+
+.group:hover .service-icon-beam-halo {
+  animation: service-icon-beam-sync 5s linear infinite;
+  /* Fase aproximada: fio no topo do card alinhado ao pico do arco cônico */
+  animation-delay: -0.9s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .service-icon-beam-halo {
+    animation: none;
+    opacity: 0;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-surface-base);
+  color: var(--color-text-primary);
+  position: relative;
+  z-index: 2;
 }
