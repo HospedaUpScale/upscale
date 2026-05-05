@@ -10,6 +10,10 @@ const companyLogoPaths = [
   "/empresas/empresa-7.JPG",
   "/empresas/empresa-8.JPG",
   "/empresas/empresa-9.JPG",
+  "/empresas/empresa-10.png",
+  "/empresas/empresa-11.png",
+  "/empresas/empresa-12.png",
+  "/empresas/empresa-13.png",
 ] as const;
 
 function LogoCard({ src }: { src: string }) {
@@ -31,16 +35,15 @@ function LogoCard({ src }: { src: string }) {
 export function TrustedBy() {
   return (
     <section className="section-surface-light border-b border-slate-200/70 border-t border-slate-200/80 py-20 md:py-28">
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-4 text-center">
-        <p className="mb-4 text-xs font-bold uppercase tracking-widest text-brand-primary">
-          QUEM CONFIA NA NOSSA ASSESSORIA
-        </p>
-        <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 md:text-[40px]">
-          Mais de 500 empresas atendidas
+      <div className="mx-auto flex max-w-4xl flex-col items-center px-4 text-center">
+        <h2 className="mb-6 text-3xl md:text-[40px]">
+          <span className="inline-block bg-gradient-to-r from-[#0229C4] to-blue-400 bg-clip-text font-bold tracking-tighter text-transparent [text-shadow:0_0_15px_rgba(2,41,196,0.3)]">
+            Líderes de mercado que escalam com a UpScale
+          </span>
         </h2>
-        <p className="text-lg text-slate-500">
-          De varejo, eventos e instituições a operações corporativas. Operamos como extensão do time de marketing dos
-          nossos clientes.
+        <p className="text-balance text-lg leading-relaxed text-slate-500">
+          De grandes operações corporativas a marcas em hipergrowth, somos o motor de infraestrutura por trás de quem
+          domina o WhatsApp.
         </p>
       </div>
 

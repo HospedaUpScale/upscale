@@ -151,42 +151,28 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 className="mt-8 w-full max-w-4xl text-4xl font-black leading-[1.15] tracking-[-0.04em] text-slate-950 sm:text-6xl sm:leading-[1.1]">
+        <h1 className="mt-8 w-full max-w-4xl text-4xl leading-[1.15] sm:text-6xl sm:leading-[1.1]">
           <motion.span
-            className="hero-headline-shine inline-block"
+            className="hero-headline-shimmer inline-block font-bold tracking-tighter"
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ ...headlineLineTransition, delay: 0.05 }}
+            transition={{ ...headlineLineTransition, delay: 0.06 }}
           >
             Sua marca conversando
-          </motion.span>
-          <br />
-          <motion.span
-            className="hero-headline-shine inline-block"
-            initial={{ opacity: 0, filter: "blur(10px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ ...headlineLineTransition, delay: 0.18 }}
-          >
+            <br />
             com o cliente de forma
-          </motion.span>
-          <br />
-          <motion.span
-            className="hero-headline-shine-accent inline-block"
-            initial={{ opacity: 0, filter: "blur(10px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ ...headlineLineTransition, delay: 0.31 }}
-          >
-            eficiente no WhatsApp
+            <br />
+            eficiente{" no WhatsApp"}
           </motion.span>
         </h1>
 
         <Reveal delay={0.08} className="mt-6 w-full max-w-2xl">
-          <p className="text-base leading-relaxed text-text-secondary sm:text-lg">
+          <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
             Vendas, ativação de base e recuperação no WhatsApp, conduzidas por um time especializado.
           </p>
         </Reveal>
 
-        <Reveal delay={0.16} className="mt-8 w-full">
+        <Reveal delay={0.16} className="mt-8 w-full sm:mt-10">
           <div id="cta" className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <ExpertCtaLink
               href="https://wa.me/5500000000000"
