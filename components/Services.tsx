@@ -24,6 +24,7 @@ const serviceItemRowVariants = {
 
 const serviceCards = [
   {
+    id: "recuperacao",
     title: "Recuperação de vendas",
     subtitle: "Nosso time recupera o que sua operação está deixando na mesa",
     icon: RefreshCcw,
@@ -48,6 +49,7 @@ const serviceCards = [
     footer: "Em média, +18% de receita recuperada nos primeiros 30 dias",
   },
   {
+    id: "ativacao",
     title: "Ativação de base",
     subtitle: "Reativamos sua base inativa com estratégia e execução",
     icon: Users,
@@ -72,6 +74,7 @@ const serviceCards = [
     footer: "Bases inteiras reativadas com mensagens contextuais, feitas pelo nosso time",
   },
   {
+    id: "vendas",
     title: "Campanhas personalizadas",
     subtitle: "Marketing direto pensado, escrito e disparado por nós",
     icon: Megaphone,
@@ -96,6 +99,7 @@ const serviceCards = [
     footer: "Campanhas que falam com cada cliente como se fossem únicos",
   },
   {
+    id: "capacidade",
     title: "Capacidade massiva",
     subtitle: "Operamos volumes que poucas empresas no Brasil suportam",
     icon: Server,
@@ -128,7 +132,9 @@ function ServiceSpotlightCard({ card }: { card: Card }) {
 
   return (
     <motion.article
+      id={card.id}
       className="group relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_28px_56px_-22px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.07)] transition-[box-shadow] duration-300 ease-out hover:shadow-[0_36px_72px_-28px_rgba(0,0,0,0.52),0_28px_56px_-20px_rgba(2,41,196,0.14),inset_0_1px_0_0_rgba(255,255,255,0.09)]"
+      style={{ scrollMarginTop: "7rem" }}
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 460, damping: 32 }}
     >
@@ -194,7 +200,7 @@ function ServiceSpotlightCard({ card }: { card: Card }) {
 
 export function Services() {
   return (
-    <section className="section-deep-slate relative overflow-hidden py-24 md:py-32">
+    <section id="services" className="section-deep-slate relative overflow-hidden py-24 md:py-32">
       <div
         className="comparison-grid-bg pointer-events-none absolute inset-0 opacity-[0.45]"
         aria-hidden

@@ -48,7 +48,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="section-surface-light relative overflow-hidden py-24 md:py-32">
+    <section id="faq" className="section-surface-light relative overflow-hidden py-24 md:py-32">
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
         <motion.div
           className="absolute -right-[18%] top-[8%] h-[min(88vw,400px)] w-[min(88vw,400px)] rounded-full blur-[110px]"

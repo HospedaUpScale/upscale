@@ -34,7 +34,7 @@ function LogoCard({ src }: { src: string }) {
 
 export function TrustedBy() {
   return (
-    <section className="section-surface-light border-b border-slate-200/70 border-t border-slate-200/80 py-20 md:py-28">
+    <section id="clients" className="section-surface-light border-b border-slate-200/70 border-t border-slate-200/80 py-20 md:py-28">
       <div className="mx-auto flex max-w-4xl flex-col items-center px-4 text-center">
         <h2 className="mb-6 text-3xl md:text-[40px]">
           <span className="inline-block bg-gradient-to-r from-[#0229C4] to-blue-400 bg-clip-text font-bold tracking-tighter text-transparent [text-shadow:0_0_15px_rgba(2,41,196,0.3)]">

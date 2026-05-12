@@ -43,7 +43,7 @@ const cardShadow =
 
 export default function Deliverables() {
   return (
-    <section className="section-deep-slate relative overflow-hidden py-24 md:py-32">
+    <section id="deliverables" className="section-deep-slate relative overflow-hidden py-24 md:py-32">
       <div className="relative z-10 mx-auto mb-16 max-w-3xl px-4 text-center">
         <p className="mb-4 text-xs font-bold uppercase tracking-widest text-sky-400">O QUE ENTREGAMOS</p>
         <h2 className="mb-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-white md:text-[44px]">

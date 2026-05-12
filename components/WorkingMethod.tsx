@@ -78,7 +78,7 @@ export default function WorkingMethod() {
   const step = stepsData[activeTab];
 
   return (
-    <section className="section-surface-light relative overflow-hidden pt-8 pb-24 md:pt-10 md:pb-32">
+    <section id="working-method" className="section-surface-light relative overflow-hidden pt-8 pb-24 md:pt-10 md:pb-32">
       <div className="mx-auto mb-8 max-w-3xl px-4 text-center">
         <p className="mb-4 text-xs font-bold uppercase tracking-widest text-brand-primary">NOSSO MÉTODO</p>
         <h2 className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 md:text-[44px]">
