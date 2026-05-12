@@ -81,13 +81,6 @@ export function Hero() {
 
   return (
     <section className="section-surface-light relative overflow-hidden pt-28 sm:pt-32">
-      {/* TODO: Inserir a URL da imagem de 1920x1080 aqui — troque `none` por url('https://...'). */}
-      <div
-        id="hero-bg-image"
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-20 mix-blend-overlay pointer-events-none"
-        style={{ backgroundImage: "none" }}
-      />
-
       <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none" aria-hidden>
         <motion.div
           className="absolute -left-[18%] top-[5%] h-[min(100vw,580px)] w-[min(100vw,580px)] rounded-full blur-[160px]"

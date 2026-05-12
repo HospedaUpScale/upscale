@@ -190,6 +190,9 @@ html::before {
   background-clip: text;
   color: transparent;
   animation: hero-headline-shimmer 3.2s linear infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: paint;
   will-change: background-position;
 }
 
