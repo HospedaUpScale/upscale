@@ -96,9 +96,9 @@ export default function Footer() {
             <a href="#" className="text-sm text-slate-500 transition-colors hover:text-slate-900">
               Termos de Uso
             </a>
-            <a href="#" className="text-sm text-slate-500 transition-colors hover:text-slate-900">
-              Privacidade
-            </a>
+            <Link href="/lgpd" className="text-sm text-slate-500 transition-colors hover:text-slate-900">
+              Privacidade (LGPD)
+            </Link>
           </nav>
         </div>
       </div>
