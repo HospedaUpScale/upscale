@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Handshake } from "lucide-react";
+import Link from "next/link";
 import { ExpertCtaLink } from "@/components/ExpertCtaLink";
 import { GradientIcon } from "@/components/GradientIcon";
 
@@ -74,6 +75,17 @@ export default function FinalCTA() {
                   Conhecer nossos serviços
                 </a>
               </div>
+              <p className="mt-4 text-xs text-slate-500">
+                Ao iniciar uma conversa pelo WhatsApp, você concorda com nossos{" "}
+                <Link href="/termos-de-uso" className="font-medium text-slate-600 underline underline-offset-2 hover:text-[#0229C4]">
+                  Termos de Uso
+                </Link>{" "}
+                e nossa{" "}
+                <Link href="/lgpd" className="font-medium text-slate-600 underline underline-offset-2 hover:text-[#0229C4]">
+                  Política de Privacidade
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </div>

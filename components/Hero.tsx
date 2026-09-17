@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ExpertCtaLink } from "@/components/ExpertCtaLink";
 import { Reveal } from "@/components/Reveal";
 
@@ -178,6 +179,17 @@ export function Hero() {
               Conhecer nossos serviços
             </a>
           </div>
+          <p className="mt-4 text-center text-xs text-slate-400">
+            Ao iniciar uma conversa pelo WhatsApp, você concorda com nossos{" "}
+            <Link href="/termos-de-uso" className="font-medium text-slate-500 underline underline-offset-2 hover:text-[#0229C4]">
+              Termos de Uso
+            </Link>{" "}
+            e nossa{" "}
+            <Link href="/lgpd" className="font-medium text-slate-500 underline underline-offset-2 hover:text-[#0229C4]">
+              Política de Privacidade
+            </Link>
+            .
+          </p>
         </Reveal>
 
         <div className="mt-20 flex w-full max-w-5xl flex-col items-stretch gap-5 sm:mt-24 sm:flex-row sm:justify-center sm:gap-6">
